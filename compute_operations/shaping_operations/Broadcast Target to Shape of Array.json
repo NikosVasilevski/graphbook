@@ -1,1 +1,185 @@
-{"name":"Broadcast Target to Shape of Array","type":"COMPOSITE_OPERATION","inputs":[{"name":"Target","primitive_name":"Target"},{"name":"Array","primitive_name":"Array"}],"outputs":[{"name":"Output","primitive_name":"Output"}],"operations":[{"name":"get_shape","primitive_name":"get_shape","type":"PRIMITIVE_OPERATION","aliases":["shape","size","get_size"],"position":{"x":601,"y":346},"inputs":[{"name":"input","primitive_name":"input"}],"outputs":[{"name":"shape","primitive_name":"shape"}]},{"name":"broadcast_to_shape","primitive_name":"broadcast_to_shape","type":"PRIMITIVE_OPERATION","aliases":["broadcast","tile","tile_to_shape"],"position":{"x":1097,"y":42},"inputs":[{"name":"target","primitive_name":"target"},{"name":"shape","primitive_name":"shape"}],"outputs":[{"name":"result","primitive_name":"result"}]}],"links":[{"source":{"operation":"this","data":"Array"},"sink":{"operation":"get_shape","data":"input"},"control_points":[{"x":427,"y":404}]},{"source":{"operation":"this","data":"Target"},"sink":{"operation":"broadcast_to_shape","data":"target"},"control_points":[]},{"source":{"operation":"get_shape","data":"shape"},"sink":{"operation":"broadcast_to_shape","data":"shape"},"control_points":[]},{"source":{"operation":"broadcast_to_shape","data":"result"},"sink":{"operation":"this","data":"Output"},"control_points":[]}]}
+{
+    "name": "Broadcast Target to Shape of Array",
+    "type": "COMPOSITE_OPERATION",
+    "inputs": [
+        {
+            "name": "Target",
+            "primitive_name": "Target"
+        },
+        {
+            "name": "Array",
+            "primitive_name": "Array"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Output",
+            "primitive_name": "Output"
+        }
+    ],
+    "operations": [
+        {
+            "name": "get_shape",
+            "primitive_name": "get_shape",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "shape",
+                "size",
+                "get_size"
+            ],
+            "position": {
+                "x": 601,
+                "y": 346
+            },
+            "inputs": [
+                {
+                    "name": "input",
+                    "primitive_name": "input"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "shape",
+                    "primitive_name": "shape"
+                }
+            ]
+        },
+        {
+            "name": "broadcast_to_shape",
+            "primitive_name": "broadcast_to_shape",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "broadcast",
+                "tile",
+                "tile_to_shape"
+            ],
+            "position": {
+                "x": 1097,
+                "y": 42
+            },
+            "inputs": [
+                {
+                    "name": "target",
+                    "primitive_name": "target"
+                },
+                {
+                    "name": "shape",
+                    "primitive_name": "shape"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "primitive_name": "result"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": {
+                "operation": "this",
+                "data": "Array"
+            },
+            "sink": {
+                "operation": "get_shape",
+                "data": "input"
+            },
+            "control_points": [
+                {
+                    "x": 427,
+                    "y": 404
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Target"
+            },
+            "sink": {
+                "operation": "broadcast_to_shape",
+                "data": "target"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "get_shape",
+                "data": "shape"
+            },
+            "sink": {
+                "operation": "broadcast_to_shape",
+                "data": "shape"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "broadcast_to_shape",
+                "data": "result"
+            },
+            "sink": {
+                "operation": "this",
+                "data": "Output"
+            },
+            "control_points": []
+        }
+    ],
+    "examples": [
+        {
+            "inputs": [
+                {
+                    "name": "target",
+                    "type": "DECIMAL",
+                    "data": 4
+                },
+                {
+                    "name": "array",
+                    "type": "INTEGER",
+                    "data": [
+                        2,
+                        3
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        4,
+                        4
+                    ]
+                }
+            ]
+        },
+        {
+            "inputs": [
+                {
+                    "name": "target",
+                    "type": "DECIMAL",
+                    "data": 1
+                },
+                {
+                    "name": "array",
+                    "type": "INTEGER",
+                    "data": [
+                        3,
+                        1
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        1,
+                        1
+                    ]
+                }
+            ]
+        }
+    ]
+}

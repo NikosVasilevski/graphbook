@@ -1,438 +1,492 @@
 {
-  "name": "Randperm",
-  "type": "COMPOSITE_OPERATION",
-  "aliases": [
-    "blank",
-    "hierarch",
-    "abstract"
-  ],
-  "inputs": [
-    {
-      "name": "N",
-      "primitive_name": "Input"
-    },
-    {
-      "name": "Seed",
-      "primitive_name": "Input"
-    }
-  ],
-  "outputs": [
-    {
-      "name": "Output",
-      "primitive_name": "Output",
-      "flow_state": "UNBOUND"
-    }
-  ],
-  "operations": [
-    {
-      "name": "Append Scalar to 1D Array",
-      "type": "COMPOSITE_OPERATION",
-      "aliases": [
-        "Add Scalar to 1D Array",
-        "Append Scalar to Vector",
-        "Add Scalar to Vector"
-      ],
-      "position": {
-        "x": 341,
-        "y": 61
-      },
-      "inputs": [
+    "name": "Randperm",
+    "aliases": [
+        "blank",
+        "hierarch",
+        "abstract"
+    ],
+    "type": "COMPOSITE_OPERATION",
+    "inputs": [
         {
-          "name": "1D Array",
-          "data": [
-            1
-          ],
-          "shape": [
-            1
-          ],
-          "type": "INTEGER",
-          "primitive_name": "1D Array",
-          "flow_state": "BOOT_SOURCE"
+            "name": "N",
+            "primitive_name": "Input"
         },
         {
-          "name": "Scalar",
-          "primitive_name": "Scalar"
+            "name": "Seed",
+            "primitive_name": "Input"
         }
-      ],
-      "outputs": [
+    ],
+    "outputs": [
         {
-          "name": "Output",
-          "primitive_name": "Output",
-          "flow_state": "UNBOUND"
+            "name": "Output",
+            "primitive_name": "Output"
         }
-      ],
-      "operations": [
+    ],
+    "assertions": [],
+    "description": [
+        "Takes an input number n and outputs a tensor containing all integers from 0 n\u22121 in a random order. It\u2019s useful for shuffling indices, like when randomly reordering data."
+    ],
+    "examples": [
         {
-          "name": "expand_one_dimension",
-          "primitive_name": "expand_one_dimension",
-          "type": "PRIMITIVE_OPERATION",
-          "aliases": [
-            "expand",
-            "expand_dimension",
-            "extend",
-            "extend_dimension",
-            "extend_one_dimension",
-            "increase_dimension",
-            "increase_one_dimension"
-          ],
-          "position": {
-            "x": 563,
-            "y": 328
-          },
-          "inputs": [
-            {
-              "name": "input",
-              "primitive_name": "input"
+            "inputs": [
+                {
+                    "name": "N",
+                    "type": "INTEGER",
+                    "data": 4
+                },
+                {
+                    "name": "Seed",
+                    "type": "INTEGER",
+                    "data": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Output",
+                    "type": "INTEGER",
+                    "data": [
+                        [
+                            1
+                        ],
+                        [
+                            2
+                        ],
+                        [
+                            0
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "inputs": [
+                {
+                    "name": "N",
+                    "type": "INTEGER",
+                    "data": 5
+                },
+                {
+                    "name": "Seed",
+                    "type": "INTEGER",
+                    "data": 0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Output",
+                    "type": "INTEGER",
+                    "data": [
+                        2,
+                        1,
+                        3,
+                        4,
+                        5
+                    ]
+                }
+            ]
+        }
+    ],
+    "operations": [
+        {
+            "name": "Append Scalar to 1D Array",
+            "position": {
+                "x": 341,
+                "y": 61
             },
-            {
-              "name": "dimension_index",
-              "data": 0,
-              "shape": [],
-              "type": "INTEGER",
-              "primitive_name": "dimension_index",
-              "flow_state": "BOOT_SOURCE"
-            }
-          ],
-          "outputs": [
-            {
-              "name": "output",
-              "primitive_name": "output",
-              "flow_state": "UNBOUND"
-            }
-          ]
+            "aliases": [
+                "Add Scalar to 1D Array",
+                "Append Scalar to Vector",
+                "Add Scalar to Vector"
+            ],
+            "type": "COMPOSITE_OPERATION",
+            "inputs": [
+                {
+                    "name": "1D Array",
+                    "primitive_name": "1D Array",
+                    "type": "INTEGER",
+                    "shape": [
+                        1
+                    ],
+                    "data": [
+                        1
+                    ],
+                    "flow_state": "BOOT_SOURCE"
+                },
+                {
+                    "name": "Scalar",
+                    "primitive_name": "Scalar"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Output",
+                    "primitive_name": "Output"
+                }
+            ],
+            "assertions": [],
+            "operations": [
+                {
+                    "name": "expand_one_dimension",
+                    "primitive_name": "expand_one_dimension",
+                    "position": {
+                        "x": 563,
+                        "y": 328
+                    },
+                    "aliases": [
+                        "expand",
+                        "expand_dimension",
+                        "extend",
+                        "extend_dimension",
+                        "extend_one_dimension",
+                        "increase_dimension",
+                        "increase_one_dimension"
+                    ],
+                    "type": "PRIMITIVE_OPERATION",
+                    "inputs": [
+                        {
+                            "name": "input",
+                            "primitive_name": "input"
+                        },
+                        {
+                            "name": "dimension_index",
+                            "primitive_name": "dimension_index",
+                            "type": "INTEGER",
+                            "shape": [],
+                            "data": 0,
+                            "flow_state": "BOOT_SOURCE"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "output",
+                            "primitive_name": "output"
+                        }
+                    ],
+                    "assertions": []
+                },
+                {
+                    "name": "concatenate",
+                    "primitive_name": "concatenate",
+                    "position": {
+                        "x": 1241,
+                        "y": 45
+                    },
+                    "aliases": [
+                        "concat",
+                        "join",
+                        "merge"
+                    ],
+                    "type": "PRIMITIVE_OPERATION",
+                    "inputs": [
+                        {
+                            "name": "array_1",
+                            "primitive_name": "array_1",
+                            "type": "INTEGER",
+                            "shape": [
+                                1
+                            ],
+                            "flow_state": "BOOT_SINK"
+                        },
+                        {
+                            "name": "array_2",
+                            "primitive_name": "array_2"
+                        },
+                        {
+                            "name": "dimension_index",
+                            "primitive_name": "dimension_index",
+                            "type": "INTEGER",
+                            "shape": [],
+                            "data": 0,
+                            "flow_state": "BOOT_SOURCE"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "name": "concatenated_array",
+                            "primitive_name": "concatenated_array"
+                        }
+                    ],
+                    "assertions": []
+                }
+            ],
+            "links": [
+                {
+                    "source": {
+                        "operation": "this",
+                        "data": "Scalar"
+                    },
+                    "sink": {
+                        "operation": "expand_one_dimension",
+                        "data": "input"
+                    },
+                    "control_points": []
+                },
+                {
+                    "source": {
+                        "operation": "this",
+                        "data": "1D Array"
+                    },
+                    "sink": {
+                        "operation": "concatenate",
+                        "data": "array_1"
+                    },
+                    "control_points": []
+                },
+                {
+                    "source": {
+                        "operation": "expand_one_dimension",
+                        "data": "output"
+                    },
+                    "sink": {
+                        "operation": "concatenate",
+                        "data": "array_2"
+                    },
+                    "control_points": []
+                },
+                {
+                    "source": {
+                        "operation": "concatenate",
+                        "data": "concatenated_array"
+                    },
+                    "sink": {
+                        "operation": "this",
+                        "data": "Output"
+                    },
+                    "control_points": []
+                }
+            ]
         },
         {
-          "name": "concatenate",
-          "primitive_name": "concatenate",
-          "type": "PRIMITIVE_OPERATION",
-          "aliases": [
-            "concat",
-            "join",
-            "merge"
-          ],
-          "position": {
-            "x": 1241,
-            "y": 45
-          },
-          "inputs": [
-            {
-              "name": "array_1",
-              "shape": [
-                1
-              ],
-              "type": "INTEGER",
-              "primitive_name": "array_1",
-              "flow_state": "BOOT_SINK"
+            "name": "swap_elements",
+            "primitive_name": "swap_elements",
+            "position": {
+                "x": 766,
+                "y": 58
             },
-            {
-              "name": "array_2",
-              "primitive_name": "array_2"
+            "aliases": [
+                "swap_elements",
+                "swap_indices",
+                "change_elements",
+                "exchange_elements"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "array",
+                    "primitive_name": "array"
+                },
+                {
+                    "name": "dimension_index",
+                    "primitive_name": "dimension_index",
+                    "type": "INTEGER",
+                    "shape": [],
+                    "data": 0,
+                    "flow_state": "BOOT_SOURCE"
+                },
+                {
+                    "name": "index_1",
+                    "primitive_name": "index_1",
+                    "type": "INTEGER",
+                    "shape": [],
+                    "data": 0,
+                    "flow_state": "BOOT_SOURCE"
+                },
+                {
+                    "name": "index_2",
+                    "primitive_name": "index_2",
+                    "type": "INTEGER",
+                    "shape": [],
+                    "data": 1,
+                    "flow_state": "BOOT_SOURCE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "swapped_array",
+                    "primitive_name": "swapped_array"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "generate_uniform_random_number",
+            "primitive_name": "generate_uniform_random_number",
+            "position": {
+                "x": 1194,
+                "y": 263
             },
-            {
-              "name": "dimension_index",
-              "data": 0,
-              "shape": [],
-              "type": "INTEGER",
-              "primitive_name": "dimension_index",
-              "flow_state": "BOOT_SOURCE"
-            }
-          ],
-          "outputs": [
-            {
-              "name": "concatenated_array",
-              "primitive_name": "concatenated_array",
-              "flow_state": "UNBOUND"
-            }
-          ]
+            "aliases": [
+                "uniform",
+                "generate_weight",
+                "initialize_weight",
+                "initialize_uniform_random_number"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "shape",
+                    "primitive_name": "shape"
+                },
+                {
+                    "name": "random_seed",
+                    "primitive_name": "random_seed"
+                },
+                {
+                    "name": "left_limit",
+                    "primitive_name": "left_limit",
+                    "type": "DECIMAL",
+                    "shape": [],
+                    "data": 0.0,
+                    "flow_state": "BOOT_SOURCE"
+                },
+                {
+                    "name": "right_limit",
+                    "primitive_name": "right_limit",
+                    "type": "DECIMAL",
+                    "shape": [],
+                    "data": 1.0,
+                    "flow_state": "BOOT_SOURCE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "random_number",
+                    "primitive_name": "random_number"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "top_k",
+            "primitive_name": "top_k",
+            "position": {
+                "x": 1554,
+                "y": 21
+            },
+            "aliases": [
+                "max_k",
+                "maximum_k",
+                "sort"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "array",
+                    "primitive_name": "array"
+                },
+                {
+                    "name": "dimension_index",
+                    "primitive_name": "dimension_index",
+                    "type": "INTEGER",
+                    "shape": [],
+                    "data": 0,
+                    "flow_state": "BOOT_SOURCE"
+                },
+                {
+                    "name": "k",
+                    "primitive_name": "k"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "top_k_array",
+                    "primitive_name": "top_k_array"
+                },
+                {
+                    "name": "top_k_indices",
+                    "primitive_name": "top_k_indices"
+                }
+            ],
+            "assertions": []
         }
-      ],
-      "links": [
+    ],
+    "links": [
         {
-          "source": {
-            "operation": "this",
-            "data": "Scalar"
-          },
-          "sink": {
-            "operation": "expand_one_dimension",
-            "data": "input"
-          },
-          "control_points": []
+            "source": {
+                "operation": "this",
+                "data": "Seed"
+            },
+            "sink": {
+                "operation": "generate_uniform_random_number",
+                "data": "random_seed"
+            },
+            "control_points": []
         },
         {
-          "source": {
-            "operation": "this",
-            "data": "1D Array"
-          },
-          "sink": {
-            "operation": "concatenate",
-            "data": "array_1"
-          },
-          "control_points": []
+            "source": {
+                "operation": "this",
+                "data": "N"
+            },
+            "sink": {
+                "operation": "Append Scalar to 1D Array",
+                "data": "Scalar"
+            },
+            "control_points": []
         },
         {
-          "source": {
-            "operation": "expand_one_dimension",
-            "data": "output"
-          },
-          "sink": {
-            "operation": "concatenate",
-            "data": "array_2"
-          },
-          "control_points": []
+            "source": {
+                "operation": "Append Scalar to 1D Array",
+                "data": "Output"
+            },
+            "sink": {
+                "operation": "swap_elements",
+                "data": "array"
+            },
+            "control_points": []
         },
         {
-          "source": {
-            "operation": "concatenate",
-            "data": "concatenated_array"
-          },
-          "sink": {
-            "operation": "this",
-            "data": "Output"
-          },
-          "control_points": []
+            "source": {
+                "operation": "swap_elements",
+                "data": "swapped_array"
+            },
+            "sink": {
+                "operation": "generate_uniform_random_number",
+                "data": "shape"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "generate_uniform_random_number",
+                "data": "random_number"
+            },
+            "sink": {
+                "operation": "top_k",
+                "data": "array"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "N"
+            },
+            "sink": {
+                "operation": "top_k",
+                "data": "k"
+            },
+            "control_points": [
+                {
+                    "x": 354,
+                    "y": 39
+                },
+                {
+                    "x": 728,
+                    "y": 14
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "top_k",
+                "data": "top_k_indices"
+            },
+            "sink": {
+                "operation": "this",
+                "data": "Output"
+            },
+            "control_points": []
         }
-      ]
-    },
-    {
-      "name": "swap_elements",
-      "primitive_name": "swap_elements",
-      "type": "PRIMITIVE_OPERATION",
-      "aliases": [
-        "swap_elements",
-        "swap_indices",
-        "change_elements",
-        "exchange_elements"
-      ],
-      "position": {
-        "x": 766,
-        "y": 58
-      },
-      "inputs": [
-        {
-          "name": "array",
-          "primitive_name": "array"
-        },
-        {
-          "name": "dimension_index",
-          "data": 0,
-          "shape": [],
-          "type": "INTEGER",
-          "primitive_name": "dimension_index",
-          "flow_state": "BOOT_SOURCE"
-        },
-        {
-          "name": "index_1",
-          "data": 0,
-          "shape": [],
-          "type": "INTEGER",
-          "primitive_name": "index_1",
-          "flow_state": "BOOT_SOURCE"
-        },
-        {
-          "name": "index_2",
-          "data": 1,
-          "shape": [],
-          "type": "INTEGER",
-          "primitive_name": "index_2",
-          "flow_state": "BOOT_SOURCE"
-        }
-      ],
-      "outputs": [
-        {
-          "name": "swapped_array",
-          "primitive_name": "swapped_array",
-          "flow_state": "UNBOUND"
-        }
-      ]
-    },
-    {
-      "name": "generate_uniform_random_number",
-      "primitive_name": "generate_uniform_random_number",
-      "type": "PRIMITIVE_OPERATION",
-      "aliases": [
-        "uniform",
-        "generate_weight",
-        "initialize_weight",
-        "initialize_uniform_random_number"
-      ],
-      "position": {
-        "x": 1194,
-        "y": 263
-      },
-      "inputs": [
-        {
-          "name": "shape",
-          "primitive_name": "shape"
-        },
-        {
-          "name": "random_seed",
-          "primitive_name": "random_seed"
-        },
-        {
-          "name": "left_limit",
-          "data": 0.0,
-          "shape": [],
-          "type": "DECIMAL",
-          "primitive_name": "left_limit",
-          "flow_state": "BOOT_SOURCE"
-        },
-        {
-          "name": "right_limit",
-          "data": 1.0,
-          "shape": [],
-          "type": "DECIMAL",
-          "primitive_name": "right_limit",
-          "flow_state": "BOOT_SOURCE"
-        }
-      ],
-      "outputs": [
-        {
-          "name": "random_number",
-          "primitive_name": "random_number",
-          "flow_state": "UNBOUND"
-        }
-      ]
-    },
-    {
-      "name": "top_k",
-      "primitive_name": "top_k",
-      "type": "PRIMITIVE_OPERATION",
-      "aliases": [
-        "max_k",
-        "maximum_k",
-        "sort"
-      ],
-      "position": {
-        "x": 1554,
-        "y": 21
-      },
-      "inputs": [
-        {
-          "name": "array",
-          "primitive_name": "array"
-        },
-        {
-          "name": "dimension_index",
-          "data": 0,
-          "shape": [],
-          "type": "INTEGER",
-          "primitive_name": "dimension_index",
-          "flow_state": "BOOT_SOURCE"
-        },
-        {
-          "name": "k",
-          "primitive_name": "k"
-        }
-      ],
-      "input_order": [
-        2,
-        0,
-        1
-      ],
-      "outputs": [
-        {
-          "name": "top_k_array",
-          "primitive_name": "top_k_array",
-          "flow_state": "UNBOUND"
-        },
-        {
-          "name": "top_k_indices",
-          "primitive_name": "top_k_indices",
-          "flow_state": "UNBOUND"
-        }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "source": {
-        "operation": "this",
-        "data": "Seed"
-      },
-      "sink": {
-        "operation": "generate_uniform_random_number",
-        "data": "random_seed"
-      },
-      "control_points": []
-    },
-    {
-      "source": {
-        "operation": "this",
-        "data": "N"
-      },
-      "sink": {
-        "operation": "Append Scalar to 1D Array",
-        "data": "Scalar"
-      },
-      "control_points": []
-    },
-    {
-      "source": {
-        "operation": "Append Scalar to 1D Array",
-        "data": "Output"
-      },
-      "sink": {
-        "operation": "swap_elements",
-        "data": "array"
-      },
-      "control_points": []
-    },
-    {
-      "source": {
-        "operation": "swap_elements",
-        "data": "swapped_array"
-      },
-      "sink": {
-        "operation": "generate_uniform_random_number",
-        "data": "shape"
-      },
-      "control_points": []
-    },
-    {
-      "source": {
-        "operation": "generate_uniform_random_number",
-        "data": "random_number"
-      },
-      "sink": {
-        "operation": "top_k",
-        "data": "array"
-      },
-      "control_points": []
-    },
-    {
-      "source": {
-        "operation": "this",
-        "data": "N"
-      },
-      "sink": {
-        "operation": "top_k",
-        "data": "k"
-      },
-      "control_points": [
-        {
-          "x": 354,
-          "y": 39
-        },
-        {
-          "x": 728,
-          "y": 14
-        }
-      ]
-    },
-    {
-      "source": {
-        "operation": "top_k",
-        "data": "top_k_indices"
-      },
-      "sink": {
-        "operation": "this",
-        "data": "Output"
-      },
-      "control_points": []
-    }
-  ],
-  "global_constants": [],
-  "description": [
-    "Takes an input number n and outputs a tensor containing all integers from 0 n\u22121 in a random order. It\u2019s useful for shuffling indices, like when randomly reordering data."
-  ]
+    ],
+    "global_constants": []
 }
