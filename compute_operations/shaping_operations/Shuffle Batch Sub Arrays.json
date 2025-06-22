@@ -1,1 +1,404 @@
-{"name":"Shuffle Batch Sub Arrays","type":"COMPOSITE_OPERATION","aliases":["shuffle batch subarrays","shuffle get sub arrays","shuffle get subarrays"],"inputs":[{"name":"Array","primitive_name":"Array"},{"name":"Dimension Index","data":0,"shape":[],"type":"INTEGER","primitive_name":"Dimension Index","flow_state":"BOOT_SOURCE"},{"name":"Size","primitive_name":"Size"},{"name":"Random Seed","primitive_name":"Random Seed"}],"outputs":[{"name":"Sub Arrays","primitive_name":"Sub Arrays"}],"operations":[{"name":"expand_one_dimension","primitive_name":"expand_one_dimension","type":"PRIMITIVE_OPERATION","aliases":["expand","expand_dimension","extend","extend_dimension","extend_one_dimension","increase_dimension","increase_one_dimension"],"position":{"x":582,"y":257},"inputs":[{"name":"input","primitive_name":"input"},{"name":"dimension_index","data":0,"shape":[],"type":"INTEGER","primitive_name":"dimension_index","flow_state":"BOOT_SOURCE"}],"outputs":[{"name":"output","primitive_name":"output"}]},{"name":"generate_uniform_random_number","primitive_name":"generate_uniform_random_number","type":"PRIMITIVE_OPERATION","aliases":["uniform","generate_weight","initialize_weight","initialize_uniform_random_number"],"position":{"x":997,"y":396},"inputs":[{"name":"shape","primitive_name":"shape"},{"name":"random_seed","primitive_name":"random_seed"},{"name":"left_limit","data":0,"shape":[],"type":"INTEGER","primitive_name":"left_limit","flow_state":"BOOT_SOURCE"},{"name":"right_limit","primitive_name":"right_limit"}],"input_order":[0,2,3,1],"outputs":[{"name":"random_number","primitive_name":"random_number"}]},{"name":"get_sub_arrays","primitive_name":"get_sub_arrays","type":"PRIMITIVE_OPERATION","aliases":["get_subarrays","batch_get_sub_arrays","batch_get_subarrays","get_sub_arrays_by_batch","get_subarrays_by_batch","get_elements","get_sub_elements"],"position":{"x":1511,"y":47},"inputs":[{"name":"input","primitive_name":"input"},{"name":"dimension_index","shape":[],"type":"INTEGER","primitive_name":"dimension_index","flow_state":"BOOT_SINK"},{"name":"selected_indices","primitive_name":"selected_indices"}],"outputs":[{"name":"output","primitive_name":"output"}]}],"links":[{"source":{"operation":"this","data":"Random Seed"},"sink":{"operation":"generate_uniform_random_number","data":"random_seed"},"control_points":[{"x":557,"y":564}]},{"source":{"operation":"this","data":"Size"},"sink":{"operation":"expand_one_dimension","data":"input"},"control_points":[]},{"source":{"operation":"expand_one_dimension","data":"output"},"sink":{"operation":"generate_uniform_random_number","data":"shape"},"control_points":[]},{"source":{"operation":"this","data":"Size"},"sink":{"operation":"generate_uniform_random_number","data":"right_limit"},"control_points":[{"x":570,"y":526}]},{"source":{"operation":"generate_uniform_random_number","data":"random_number"},"sink":{"operation":"get_sub_arrays","data":"selected_indices"},"control_points":[]},{"source":{"operation":"this","data":"Dimension Index"},"sink":{"operation":"get_sub_arrays","data":"dimension_index"},"control_points":[]},{"source":{"operation":"this","data":"Array"},"sink":{"operation":"get_sub_arrays","data":"input"},"control_points":[]},{"source":{"operation":"get_sub_arrays","data":"output"},"sink":{"operation":"this","data":"Sub Arrays"},"control_points":[]}],"global_constants":[]}
+{
+    "name": "Shuffle Batch Sub Arrays",
+    "type": "COMPOSITE_OPERATION",
+    "aliases": [
+        "shuffle batch subarrays",
+        "shuffle get sub arrays",
+        "shuffle get subarrays"
+    ],
+    "inputs": [
+        {
+            "name": "Array",
+            "primitive_name": "Array"
+        },
+        {
+            "name": "Dimension Index",
+            "data": 0,
+            "shape": [],
+            "type": "INTEGER",
+            "primitive_name": "Dimension Index",
+            "flow_state": "BOOT_SOURCE"
+        },
+        {
+            "name": "Size",
+            "primitive_name": "Size"
+        },
+        {
+            "name": "Random Seed",
+            "primitive_name": "Random Seed"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Sub Arrays",
+            "primitive_name": "Sub Arrays"
+        }
+    ],
+    "operations": [
+        {
+            "name": "expand_one_dimension",
+            "primitive_name": "expand_one_dimension",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "expand",
+                "expand_dimension",
+                "extend",
+                "extend_dimension",
+                "extend_one_dimension",
+                "increase_dimension",
+                "increase_one_dimension"
+            ],
+            "position": {
+                "x": 582,
+                "y": 257
+            },
+            "inputs": [
+                {
+                    "name": "input",
+                    "primitive_name": "input"
+                },
+                {
+                    "name": "dimension_index",
+                    "data": 0,
+                    "shape": [],
+                    "type": "INTEGER",
+                    "primitive_name": "dimension_index",
+                    "flow_state": "BOOT_SOURCE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "primitive_name": "output"
+                }
+            ]
+        },
+        {
+            "name": "generate_uniform_random_number",
+            "primitive_name": "generate_uniform_random_number",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "uniform",
+                "generate_weight",
+                "initialize_weight",
+                "initialize_uniform_random_number"
+            ],
+            "position": {
+                "x": 997,
+                "y": 396
+            },
+            "inputs": [
+                {
+                    "name": "shape",
+                    "primitive_name": "shape"
+                },
+                {
+                    "name": "random_seed",
+                    "primitive_name": "random_seed"
+                },
+                {
+                    "name": "left_limit",
+                    "data": 0,
+                    "shape": [],
+                    "type": "INTEGER",
+                    "primitive_name": "left_limit",
+                    "flow_state": "BOOT_SOURCE"
+                },
+                {
+                    "name": "right_limit",
+                    "primitive_name": "right_limit"
+                }
+            ],
+            "input_order": [
+                0,
+                2,
+                3,
+                1
+            ],
+            "outputs": [
+                {
+                    "name": "random_number",
+                    "primitive_name": "random_number"
+                }
+            ]
+        },
+        {
+            "name": "get_sub_arrays",
+            "primitive_name": "get_sub_arrays",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "get_subarrays",
+                "batch_get_sub_arrays",
+                "batch_get_subarrays",
+                "get_sub_arrays_by_batch",
+                "get_subarrays_by_batch",
+                "get_elements",
+                "get_sub_elements"
+            ],
+            "position": {
+                "x": 1511,
+                "y": 47
+            },
+            "inputs": [
+                {
+                    "name": "input",
+                    "primitive_name": "input"
+                },
+                {
+                    "name": "dimension_index",
+                    "shape": [],
+                    "type": "INTEGER",
+                    "primitive_name": "dimension_index",
+                    "flow_state": "BOOT_SINK"
+                },
+                {
+                    "name": "selected_indices",
+                    "primitive_name": "selected_indices"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "primitive_name": "output"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": {
+                "operation": "this",
+                "data": "Random Seed"
+            },
+            "sink": {
+                "operation": "generate_uniform_random_number",
+                "data": "random_seed"
+            },
+            "control_points": [
+                {
+                    "x": 557,
+                    "y": 564
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Size"
+            },
+            "sink": {
+                "operation": "expand_one_dimension",
+                "data": "input"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "expand_one_dimension",
+                "data": "output"
+            },
+            "sink": {
+                "operation": "generate_uniform_random_number",
+                "data": "shape"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Size"
+            },
+            "sink": {
+                "operation": "generate_uniform_random_number",
+                "data": "right_limit"
+            },
+            "control_points": [
+                {
+                    "x": 570,
+                    "y": 526
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "generate_uniform_random_number",
+                "data": "random_number"
+            },
+            "sink": {
+                "operation": "get_sub_arrays",
+                "data": "selected_indices"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Dimension Index"
+            },
+            "sink": {
+                "operation": "get_sub_arrays",
+                "data": "dimension_index"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Array"
+            },
+            "sink": {
+                "operation": "get_sub_arrays",
+                "data": "input"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "get_sub_arrays",
+                "data": "output"
+            },
+            "sink": {
+                "operation": "this",
+                "data": "Sub Arrays"
+            },
+            "control_points": []
+        }
+    ],
+    "global_constants": [],
+    "examples": [
+        {
+            "inputs": [
+                {
+                    "name": "array",
+                    "type": "INTEGER",
+                    "data": [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            3,
+                            4
+                        ],
+                        [
+                            5,
+                            6
+                        ],
+                        [
+                            7,
+                            8
+                        ],
+                        [
+                            9,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "name": "dimension_index",
+                    "type": "INTEGER",
+                    "data": 0
+                },
+                {
+                    "name": "size",
+                    "type": "INTEGER",
+                    "data": 2
+                },
+                {
+                    "name": "random_seed",
+                    "type": "INTEGER",
+                    "data": 5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Sub Arrays",
+                    "type": "INTEGER",
+                    "data": [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            1,
+                            2
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "inputs": [
+                {
+                    "name": "array",
+                    "type": "INTEGER",
+                    "data": [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            3,
+                            4
+                        ],
+                        [
+                            5,
+                            6
+                        ],
+                        [
+                            7,
+                            8
+                        ],
+                        [
+                            9,
+                            0
+                        ]
+                    ]
+                },
+                {
+                    "name": "dimension_index",
+                    "type": "INTEGER",
+                    "data": 0
+                },
+                {
+                    "name": "size",
+                    "type": "INTEGER",
+                    "data": 2
+                },
+                {
+                    "name": "random_seed",
+                    "type": "INTEGER",
+                    "data": 5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Sub Arrays",
+                    "type": "INTEGER",
+                    "data": [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            5,
+                            6
+                        ],
+                        [
+                            3,
+                            4
+                        ],
+                        [
+                            7,
+                            8
+                        ],
+                        [
+                            9,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

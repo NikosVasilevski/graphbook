@@ -1,1 +1,211 @@
-{"name":"Append Scalar to 1D Array","type":"COMPOSITE_OPERATION","aliases":["Add Scalar to 1D Array","Append Scalar to Vector","Add Scalar to Vector"],"inputs":[{"name":"1D Array","primitive_name":"1D Array"},{"name":"Scalar","primitive_name":"Scalar"}],"outputs":[{"name":"Output","primitive_name":"Output"}],"operations":[{"name":"expand_one_dimension","primitive_name":"expand_one_dimension","type":"PRIMITIVE_OPERATION","aliases":["expand","expand_dimension","extend","extend_dimension","extend_one_dimension","increase_dimension","increase_one_dimension"],"position":{"x":563,"y":328},"inputs":[{"name":"input","primitive_name":"input"},{"name":"dimension_index","data":0,"shape":[],"type":"INTEGER","primitive_name":"dimension_index","flow_state":"BOOT_SOURCE"}],"outputs":[{"name":"output","primitive_name":"output"}]},{"name":"concatenate","primitive_name":"concatenate","type":"PRIMITIVE_OPERATION","aliases":["concat","join","merge"],"position":{"x":1241,"y":45},"inputs":[{"name":"array_1","primitive_name":"array_1"},{"name":"array_2","primitive_name":"array_2"},{"name":"dimension_index","data":0,"shape":[],"type":"INTEGER","primitive_name":"dimension_index","flow_state":"BOOT_SOURCE"}],"outputs":[{"name":"concatenated_array","primitive_name":"concatenated_array"}]}],"links":[{"source":{"operation":"this","data":"Scalar"},"sink":{"operation":"expand_one_dimension","data":"input"},"control_points":[]},{"source":{"operation":"this","data":"1D Array"},"sink":{"operation":"concatenate","data":"array_1"},"control_points":[]},{"source":{"operation":"expand_one_dimension","data":"output"},"sink":{"operation":"concatenate","data":"array_2"},"control_points":[]},{"source":{"operation":"concatenate","data":"concatenated_array"},"sink":{"operation":"this","data":"Output"},"control_points":[]}]}
+{
+    "name": "Append Scalar to 1D Array",
+    "type": "COMPOSITE_OPERATION",
+    "aliases": [
+        "Add Scalar to 1D Array",
+        "Append Scalar to Vector",
+        "Add Scalar to Vector"
+    ],
+    "inputs": [
+        {
+            "name": "1D Array",
+            "primitive_name": "1D Array"
+        },
+        {
+            "name": "Scalar",
+            "primitive_name": "Scalar"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Output",
+            "primitive_name": "Output"
+        }
+    ],
+    "operations": [
+        {
+            "name": "expand_one_dimension",
+            "primitive_name": "expand_one_dimension",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "expand",
+                "expand_dimension",
+                "extend",
+                "extend_dimension",
+                "extend_one_dimension",
+                "increase_dimension",
+                "increase_one_dimension"
+            ],
+            "position": {
+                "x": 563,
+                "y": 328
+            },
+            "inputs": [
+                {
+                    "name": "input",
+                    "primitive_name": "input"
+                },
+                {
+                    "name": "dimension_index",
+                    "data": 0,
+                    "shape": [],
+                    "type": "INTEGER",
+                    "primitive_name": "dimension_index",
+                    "flow_state": "BOOT_SOURCE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "primitive_name": "output"
+                }
+            ]
+        },
+        {
+            "name": "concatenate",
+            "primitive_name": "concatenate",
+            "type": "PRIMITIVE_OPERATION",
+            "aliases": [
+                "concat",
+                "join",
+                "merge"
+            ],
+            "position": {
+                "x": 1241,
+                "y": 45
+            },
+            "inputs": [
+                {
+                    "name": "array_1",
+                    "primitive_name": "array_1"
+                },
+                {
+                    "name": "array_2",
+                    "primitive_name": "array_2"
+                },
+                {
+                    "name": "dimension_index",
+                    "data": 0,
+                    "shape": [],
+                    "type": "INTEGER",
+                    "primitive_name": "dimension_index",
+                    "flow_state": "BOOT_SOURCE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "concatenated_array",
+                    "primitive_name": "concatenated_array"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "source": {
+                "operation": "this",
+                "data": "Scalar"
+            },
+            "sink": {
+                "operation": "expand_one_dimension",
+                "data": "input"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "1D Array"
+            },
+            "sink": {
+                "operation": "concatenate",
+                "data": "array_1"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "expand_one_dimension",
+                "data": "output"
+            },
+            "sink": {
+                "operation": "concatenate",
+                "data": "array_2"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "concatenate",
+                "data": "concatenated_array"
+            },
+            "sink": {
+                "operation": "this",
+                "data": "Output"
+            },
+            "control_points": []
+        }
+    ],
+    "examples": [
+        {
+            "inputs": [
+                {
+                    "name": "var_1d_array",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0
+                    ]
+                },
+                {
+                    "name": "scalar",
+                    "type": "DECIMAL",
+                    "data": 4.0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0,
+                        4.0
+                    ]
+                }
+            ]
+        },
+        {
+            "inputs": [
+                {
+                    "name": "var_1d_array",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0
+                    ]
+                },
+                {
+                    "name": "scalar",
+                    "type": "DECIMAL",
+                    "data": -4.0
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0,
+                        -4.0
+                    ]
+                }
+            ]
+        }
+    ]
+}

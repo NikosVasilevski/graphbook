@@ -1,1 +1,423 @@
-{"name":"Lerp","type":"COMPOSITE_OPERATION","inputs":[{"name":"Start","primitive_name":"Input"},{"name":"End","primitive_name":"Input (1)"},{"name":"Weight","primitive_name":"Input (2)"}],"outputs":[{"name":"Output","primitive_name":"Output","flow_state":"UNBOUND"}],"operations":[{"name":"subtract","primitive_name":"subtract","type":"PRIMITIVE_OPERATION","aliases":["minus","decrement"],"position":{"x":454,"y":176},"inputs":[{"name":"left_operand","primitive_name":"left_operand"},{"name":"right_operand","primitive_name":"right_operand"}],"outputs":[{"name":"subtracted_result","primitive_name":"subtracted_result","flow_state":"UNBOUND"}]},{"name":"get_shape","primitive_name":"get_shape","type":"PRIMITIVE_OPERATION","aliases":["shape","size","get_size"],"position":{"x":950,"y":429},"inputs":[{"name":"input","primitive_name":"input"}],"outputs":[{"name":"shape","primitive_name":"shape","flow_state":"UNBOUND"}]},{"name":"broadcast_to_shape","primitive_name":"broadcast_to_shape","type":"PRIMITIVE_OPERATION","aliases":["tile_to_shape","expand_to_shape","extend_to_shape"],"position":{"x":1286,"y":327},"inputs":[{"name":"target","primitive_name":"target"},{"name":"shape","primitive_name":"shape"}],"outputs":[{"name":"result","primitive_name":"result","flow_state":"UNBOUND"}]},{"name":"element_wise_multiply","primitive_name":"element_wise_multiply","type":"PRIMITIVE_OPERATION","aliases":["times"],"position":{"x":1644,"y":176},"inputs":[{"name":"left_array","primitive_name":"left_array"},{"name":"right_array","primitive_name":"right_array"}],"outputs":[{"name":"multiplied_array","primitive_name":"multiplied_array","flow_state":"UNBOUND"}]},{"name":"add","primitive_name":"add","type":"PRIMITIVE_OPERATION","aliases":["plus","increment"],"position":{"x":2086,"y":130},"inputs":[{"name":"left_operand","primitive_name":"left_operand"},{"name":"right_operand","primitive_name":"right_operand"}],"outputs":[{"name":"added_result","primitive_name":"added_result","flow_state":"UNBOUND"}]},{"name":"Data Type Is Decimal","primitive_name":"Data Type Is Decimal","type":"CLIENT_SIDE_CONSTRAINT_OPERATION","aliases":["constraint"],"position":{"x":261,"y":447},"inputs":[{"name":"variable","primitive_name":"variable"}],"outputs":[]}],"links":[{"source":{"operation":"this","data":"End"},"sink":{"operation":"subtract","data":"left_operand"},"control_points":[{"x":320,"y":165}]},{"source":{"operation":"this","data":"Start"},"sink":{"operation":"subtract","data":"right_operand"},"control_points":[{"x":327,"y":287}]},{"source":{"operation":"subtract","data":"subtracted_result"},"sink":{"operation":"get_shape","data":"input"},"control_points":[]},{"source":{"operation":"this","data":"Weight"},"sink":{"operation":"broadcast_to_shape","data":"target"},"control_points":[{"x":371,"y":392}]},{"source":{"operation":"get_shape","data":"shape"},"sink":{"operation":"broadcast_to_shape","data":"shape"},"control_points":[]},{"source":{"operation":"add","data":"added_result"},"sink":{"operation":"this","data":"Output"},"control_points":[]},{"source":{"operation":"broadcast_to_shape","data":"result"},"sink":{"operation":"element_wise_multiply","data":"right_array"},"control_points":[]},{"source":{"operation":"subtract","data":"subtracted_result"},"sink":{"operation":"element_wise_multiply","data":"left_array"},"control_points":[]},{"source":{"operation":"element_wise_multiply","data":"multiplied_array"},"sink":{"operation":"add","data":"right_operand"},"control_points":[]},{"source":{"operation":"this","data":"Start"},"sink":{"operation":"add","data":"left_operand"},"control_points":[{"x":291,"y":20},{"x":1642,"y":20}]},{"source":{"operation":"this","data":"Weight"},"sink":{"operation":"Data Type Is Decimal","data":"variable"},"control_points":[]}],"global_constants":[]}
+{
+    "name": "Lerp",
+    "type": "COMPOSITE_OPERATION",
+    "inputs": [
+        {
+            "name": "Start",
+            "primitive_name": "Input"
+        },
+        {
+            "name": "End",
+            "primitive_name": "Input (1)"
+        },
+        {
+            "name": "Weight",
+            "primitive_name": "Input (2)"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "Output",
+            "primitive_name": "Output"
+        }
+    ],
+    "assertions": [],
+    "description": [
+        "Performs a linear interpolation of Start and End tensors based off of weight scalar. Start and End tensors must be the same shape. "
+    ],
+    "examples": [
+        {
+            "inputs": [
+                {
+                    "name": "start",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0
+                    ]
+                },
+                {
+                    "name": "end",
+                    "type": "DECIMAL",
+                    "data": [
+                        3.0,
+                        4.0,
+                        5.0
+                    ]
+                },
+                {
+                    "name": "weight",
+                    "type": "DECIMAL",
+                    "data": 0.5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        2.0,
+                        3.0,
+                        4.0
+                    ]
+                }
+            ]
+        },
+        {
+            "inputs": [
+                {
+                    "name": "start",
+                    "type": "DECIMAL",
+                    "data": [
+                        -1.0,
+                        0.0,
+                        10
+                    ]
+                },
+                {
+                    "name": "end",
+                    "type": "DECIMAL",
+                    "data": [
+                        -5.0,
+                        -8.0,
+                        2
+                    ]
+                },
+                {
+                    "name": "weight",
+                    "type": "DECIMAL",
+                    "data": 0.8
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        -4.2,
+                        -6.4,
+                        3.6
+                    ]
+                }
+            ]
+        }
+    ],
+    "operations": [
+        {
+            "name": "subtract",
+            "primitive_name": "subtract",
+            "position": {
+                "x": 454,
+                "y": 176
+            },
+            "aliases": [
+                "minus",
+                "decrement"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "left_operand",
+                    "primitive_name": "left_operand"
+                },
+                {
+                    "name": "right_operand",
+                    "primitive_name": "right_operand"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "subtracted_result",
+                    "primitive_name": "subtracted_result"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "get_shape",
+            "primitive_name": "get_shape",
+            "position": {
+                "x": 950,
+                "y": 429
+            },
+            "aliases": [
+                "shape",
+                "size",
+                "get_size"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "input",
+                    "primitive_name": "input"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "shape",
+                    "primitive_name": "shape"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "broadcast_to_shape",
+            "primitive_name": "broadcast_to_shape",
+            "position": {
+                "x": 1286,
+                "y": 327
+            },
+            "aliases": [
+                "tile_to_shape",
+                "expand_to_shape",
+                "extend_to_shape"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "target",
+                    "primitive_name": "target"
+                },
+                {
+                    "name": "shape",
+                    "primitive_name": "shape"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "result",
+                    "primitive_name": "result"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "element_wise_multiply",
+            "primitive_name": "element_wise_multiply",
+            "position": {
+                "x": 1644,
+                "y": 176
+            },
+            "aliases": [
+                "times"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "left_array",
+                    "primitive_name": "left_array"
+                },
+                {
+                    "name": "right_array",
+                    "primitive_name": "right_array"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "multiplied_array",
+                    "primitive_name": "multiplied_array"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "add",
+            "primitive_name": "add",
+            "position": {
+                "x": 2086,
+                "y": 130
+            },
+            "aliases": [
+                "plus",
+                "increment"
+            ],
+            "type": "PRIMITIVE_OPERATION",
+            "inputs": [
+                {
+                    "name": "left_operand",
+                    "primitive_name": "left_operand"
+                },
+                {
+                    "name": "right_operand",
+                    "primitive_name": "right_operand"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "added_result",
+                    "primitive_name": "added_result"
+                }
+            ],
+            "assertions": []
+        },
+        {
+            "name": "Data Type Is Decimal",
+            "primitive_name": "Data Type Is Decimal",
+            "position": {
+                "x": 261,
+                "y": 447
+            },
+            "aliases": [
+                "constraint"
+            ],
+            "type": "CLIENT_SIDE_CONSTRAINT_OPERATION",
+            "inputs": [
+                {
+                    "name": "variable",
+                    "primitive_name": "variable"
+                }
+            ],
+            "outputs": [],
+            "assertions": []
+        }
+    ],
+    "links": [
+        {
+            "source": {
+                "operation": "this",
+                "data": "End"
+            },
+            "sink": {
+                "operation": "subtract",
+                "data": "left_operand"
+            },
+            "control_points": [
+                {
+                    "x": 320,
+                    "y": 165
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Start"
+            },
+            "sink": {
+                "operation": "subtract",
+                "data": "right_operand"
+            },
+            "control_points": [
+                {
+                    "x": 327,
+                    "y": 287
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "subtract",
+                "data": "subtracted_result"
+            },
+            "sink": {
+                "operation": "get_shape",
+                "data": "input"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Weight"
+            },
+            "sink": {
+                "operation": "broadcast_to_shape",
+                "data": "target"
+            },
+            "control_points": [
+                {
+                    "x": 371,
+                    "y": 392
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "get_shape",
+                "data": "shape"
+            },
+            "sink": {
+                "operation": "broadcast_to_shape",
+                "data": "shape"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "add",
+                "data": "added_result"
+            },
+            "sink": {
+                "operation": "this",
+                "data": "Output"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "broadcast_to_shape",
+                "data": "result"
+            },
+            "sink": {
+                "operation": "element_wise_multiply",
+                "data": "right_array"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "subtract",
+                "data": "subtracted_result"
+            },
+            "sink": {
+                "operation": "element_wise_multiply",
+                "data": "left_array"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "element_wise_multiply",
+                "data": "multiplied_array"
+            },
+            "sink": {
+                "operation": "add",
+                "data": "right_operand"
+            },
+            "control_points": []
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Start"
+            },
+            "sink": {
+                "operation": "add",
+                "data": "left_operand"
+            },
+            "control_points": [
+                {
+                    "x": 291,
+                    "y": 20
+                },
+                {
+                    "x": 1642,
+                    "y": 20
+                }
+            ]
+        },
+        {
+            "source": {
+                "operation": "this",
+                "data": "Weight"
+            },
+            "sink": {
+                "operation": "Data Type Is Decimal",
+                "data": "variable"
+            },
+            "control_points": []
+        }
+    ],
+    "global_constants": []
+}

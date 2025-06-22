@@ -910,5 +910,55 @@
             "type": "DECIMAL",
             "primitive_name": "Input (1)"
         }
+    ],
+    "examples": [
+        {
+            "inputs": [
+                {
+                    "name": "var_input",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        1.0,
+                        2.0,
+                        3.0
+                    ]
+                }
+            ]
+        },
+        {
+            "inputs": [
+                {
+                    "name": "var_input",
+                    "type": "DECIMAL",
+                    "data": [
+                        4.0,
+                        -2.0,
+                        4.5
+                    ]
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "DECIMAL",
+                    "data": [
+                        4.0,
+                        -2.0,
+                        5.0
+                    ]
+                }
+            ]
+        }
     ]
 }
