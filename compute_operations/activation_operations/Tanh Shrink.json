@@ -28,7 +28,7 @@
     ],
     "assertions": [],
     "description": [
-        "Applies the Tanhshrink function to an input, which compresses the input value to a range between -1 and 1, shrinking the possible outputs while maintaining a zero-centered distribution."
+        "Applies the Tanh shrink function to an input, which compresses the input value to a range between -1 and 1, shrinking the possible outputs while maintaining a zero-centered distribution."
     ],
     "examples": [
         {

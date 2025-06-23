@@ -36,7 +36,7 @@
                     ]
                 },
                 {
-                    "name": "Lambda",
+                    "name": "Alpha",
                     "type": "DECIMAL",
                     "data": 0.5
                 }
@@ -68,7 +68,7 @@
                     ]
                 },
                 {
-                    "name": "Lambda",
+                    "name": "Alpha",
                     "type": "DECIMAL",
                     "data": 0.5
                 }
